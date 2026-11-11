@@ -1,0 +1,103 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Estúdio de posts · Dra. Ana Paula</title>
+<style>:root{--c:#9A6240;--c2:#F3E3DA;--bg:#FAF4EE;--ink:#3A2A22;--soft:#7A6A60;--line:#E6D6CA;--deep:#2F5D54}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:19px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:560px;margin:0 auto;padding:22px 18px 40px;min-height:100vh;display:flex;flex-direction:column}
+h1{font:italic 700 30px/1.2 Georgia,serif;margin:10px 0 12px;color:var(--deep)}
+h2{font:700 21px/1.3 Georgia,serif;margin:18px 0 10px;color:var(--deep)}
+p{margin:0 0 14px}.sub{color:var(--soft)}
+.top{font:italic 17px Georgia,serif;color:var(--deep);text-align:center;margin:0 0 6px}
+.btn{display:block;width:100%;min-height:58px;border-radius:16px;border:0;background:var(--c);color:#fff;font-weight:700;font-size:19px;font-family:inherit;cursor:pointer;margin-top:10px;text-align:center;text-decoration:none;padding:16px}
+.btn.sec{background:#fff;color:var(--c);border:2px solid var(--c)}
+.card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:18px;margin:0 0 16px}
+.card b{color:var(--deep)}
+input,select,textarea{width:100%;font:inherit;font-size:19px;padding:14px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);margin:0 0 12px}
+label{display:block;font-weight:700;margin:0 0 6px}
+.aviso{font-size:15px;color:var(--soft);margin-top:14px}
+.back{display:inline-block;color:var(--soft);font-size:17px;padding:8px 0;text-decoration:none}
+footer{margin-top:auto;padding-top:24px;text-align:center;font-size:15px;color:var(--soft)}
+canvas{width:100%;height:auto;border-radius:14px;border:2px solid var(--line);background:#fff;display:block}
+.cores{display:flex;gap:10px;margin:0 0 14px}.cor{flex:1;height:56px;border-radius:14px;border:3px solid transparent;cursor:pointer}.cor.on{border-color:var(--ink)}
+.fmt{display:flex;gap:10px;margin:0 0 6px}.fmt button{flex:1;min-height:54px;border-radius:14px;border:2px solid var(--line);background:#fff;font:inherit;font-size:18px;cursor:pointer}.fmt button.on{border-color:var(--c);background:var(--c2);font-weight:700}
+details{background:#fff;border:2px solid var(--line);border-radius:16px;padding:12px 16px;margin:0 0 12px}summary{font-weight:700;cursor:pointer;color:var(--deep)}
+li{margin:0 0 8px}</style></head><body><main>
+<p class="top">Estúdio de posts · Dra. Ana Paula</p>
+<h1>Crie o seu post em 3 toques</h1>
+<h2>1. Formato</h2>
+<div class="fmt"><button id="fp" class="on">Post</button><button id="fs">Story</button></div>
+<h2>2. Frase</h2>
+<select id="fr"></select>
+<label for="tx" style="margin-top:6px">Ou escreva a sua:</label>
+<textarea id="tx" rows="2" placeholder="Escreva aqui (opcional)"></textarea>
+<h2>3. Cor</h2>
+<div class="cores" id="cores"></div>
+<canvas id="cv"></canvas>
+<button class="btn" id="bx">Baixar a imagem</button>
+<button class="btn sec" id="sh">Compartilhar</button>
+<h2>Legenda pronta</h2>
+<div class="card"><p id="lg" style="white-space:pre-wrap;margin:0 0 6px"></p></div>
+<button class="btn sec" id="cp">Copiar a legenda</button>
+<h2>Ideias</h2>
+<details><summary>7 ideias de stories para a semana</summary><ol style="padding-left:22px;margin:12px 0 0">
+<li>Segunda: mostre o seu café da manhã e pergunte "e o seu?"</li>
+<li>Terça: enquete "Você bebeu água hoje? Sim / Ainda não".</li>
+<li>Quarta: um mito da alimentação, com "mito ou verdade?".</li>
+<li>Quinta: bastidores do atendimento (sem mostrar dados de paciente).</li>
+<li>Sexta: uma receita rápida em 3 passos.</li>
+<li>Sábado: o que tem na sua cesta de feira.</li>
+<li>Domingo: caixinha de perguntas "o que você quer saber sobre alimentação?".</li></ol></details>
+<p class="aviso">Dica: ao postar, marque a localização e responda os comentários no mesmo dia.</p>
+<footer>Feito por Eve, imagem e marca<br>Nutrindo Vidas</footer>
+</main>
+<script>
+(function(){
+var HANDLE="@anapaulaa.nutri";
+var F=[
+["Comer bem não é castigo. É cuidado.","Comer bem é um jeito de se cuidar, sem culpa e sem pressão. 🤎"],
+["Um passo de cada vez também é caminhar.","Não precisa mudar tudo hoje. Escolha um hábito pequeno e comece por ele."],
+["Leveza não é fazer menos. É fazer sem culpa.","Cuidar da alimentação pode ser leve. Me conta: qual é o seu primeiro passo?"],
+["Seu corpo merece gentileza, todos os dias.","Gentileza com você também é parte do cuidado. Salve para lembrar."],
+["Não existe alimento proibido. Existe equilíbrio.","Equilíbrio é o que cabe na sua rotina, sem terrorismo e sem culpa."],
+["Beber água também é um ato de carinho.","Já bebeu água hoje? Deixe uma garrafinha à vista e comece agora."],
+["Constância vale mais que intensidade.","O que funciona é o que você consegue manter. Pequeno e todo dia."],
+["Hoje você pode recomeçar, sem se cobrar.","Teve um dia difícil? Amanhã é outra chance. Recomeçar também é cuidar."],
+["Prato bonito, mente leve.","Comer com atenção e prazer faz parte do processo. Que tal uma refeição sem tela hoje?"],
+["Cuidar de si não é egoísmo.","É o que sustenta o resto da sua vida. Você merece esse tempo."],
+["Comida de verdade, rotina possível.","Nada de plano impossível. O melhor plano é o que cabe na sua vida."],
+["Pequenos hábitos, grandes mudanças.","Um copo d'água, um prato colorido, uma caminhada. Tudo conta."]];
+var TAGS="#nutricao #alimentacaoleve #leveza #nutrindovidas #emagrecimentosaudavel #habitossaudaveis";
+var CTA="Quer um plano feito para a sua rotina? Chama no WhatsApp (link na bio). 💬";
+var CORES=[{n:"Caramelo",bg:"#9A6240",bg2:"#7A4B2E",fg:"#FFF6EE"},{n:"Rosé",bg:"#D9B8AC",bg2:"#C79F91",fg:"#3A2A22"},{n:"Verde",bg:"#2F5D54",bg2:"#234640",fg:"#F6EFE6"},{n:"Creme",bg:"#F6EDE4",bg2:"#EADBCB",fg:"#5A3A28"}];
+var st={w:1080,h:1350,c:0},cv=document.getElementById("cv"),x=cv.getContext("2d");
+var sel=document.getElementById("fr"),tx=document.getElementById("tx"),lg=document.getElementById("lg");
+F.forEach(function(f,i){var o=document.createElement("option");o.value=i;o.textContent=f[0];sel.appendChild(o)});
+var cs=document.getElementById("cores");
+CORES.forEach(function(c,i){var d=document.createElement("div");d.className="cor"+(i?"":" on");d.style.background=c.bg;d.title=c.n;d.onclick=function(){st.c=i;Array.prototype.forEach.call(cs.children,function(e,k){e.className="cor"+(k===i?" on":"")});draw()};cs.appendChild(d)});
+function quebra(t,max){var p=t.split(/\s+/),l=[],c="";p.forEach(function(w){var n=c?c+" "+w:w;if(x.measureText(n).width>max&&c){l.push(c);c=w}else c=n});if(c)l.push(c);return l}
+function draw(){
+ var W=st.w,H=st.h,C=CORES[st.c];cv.width=W;cv.height=H;
+ var g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,C.bg);g.addColorStop(1,C.bg2);x.fillStyle=g;x.fillRect(0,0,W,H);
+ x.strokeStyle=C.fg;x.globalAlpha=.35;x.lineWidth=3;x.strokeRect(50,50,W-100,H-100);x.globalAlpha=1;
+ x.fillStyle=C.fg;x.textAlign="center";x.textBaseline="alphabetic";
+ x.font="italic 40px Georgia,serif";x.fillText("Nutrindo Leveza",W/2,150);
+ var t=(tx.value.trim()||F[sel.value][0]),fs=st.h>1500?96:92,L;
+ while(fs>44){x.font="italic 700 "+fs+"px Georgia,serif";L=quebra(t,W-220);if(L.length*fs*1.25<H*0.55)break;fs-=4}
+ var lh=fs*1.25,y=H/2-(L.length*lh)/2+fs*0.85;
+ L.forEach(function(s,i){x.fillText(s,W/2,y+i*lh)});
+ x.globalAlpha=.5;x.fillRect(W/2-60,H-210,120,3);x.globalAlpha=1;
+ x.font="600 40px system-ui,sans-serif";x.fillText(HANDLE,W/2,H-140);
+ x.font="italic 32px Georgia,serif";x.globalAlpha=.8;x.fillText("Dra. Ana Paula · Nutricionista",W/2,H-95);x.globalAlpha=1;
+ var leg=tx.value.trim()?"Escreva aqui o que você quer comentar sobre a frase.":F[sel.value][1];
+ lg.textContent=leg+"\n\n"+CTA+"\n\n"+TAGS;
+}
+function fm(w,h,id){st.w=w;st.h=h;document.getElementById("fp").className=id==="p"?"on":"";document.getElementById("fs").className=id==="s"?"on":"";draw()}
+document.getElementById("fp").onclick=function(){fm(1080,1350,"p")};
+document.getElementById("fs").onclick=function(){fm(1080,1920,"s")};
+sel.onchange=function(){tx.value="";draw()};tx.oninput=draw;
+function blob(cb){cv.toBlob(cb,"image/png")}
+document.getElementById("bx").onclick=function(){blob(function(b){var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="post-ana-paula.png";document.body.appendChild(a);a.click();a.remove()})};
+document.getElementById("sh").onclick=function(){blob(function(b){var f=new File([b],"post-ana-paula.png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],text:lg.textContent}).catch(function(){});else document.getElementById("bx").click()})};
+document.getElementById("cp").onclick=function(){var b=this;(navigator.clipboard?navigator.clipboard.writeText(lg.textContent):Promise.reject()).then(function(){b.textContent="Copiado!"},function(){b.textContent="Selecione e copie o texto acima"});setTimeout(function(){b.textContent="Copiar a legenda"},2000)};
+draw();
+})();
+</script></body></html>
