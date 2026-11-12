@@ -1,27 +1,36 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Calculadora de IMC · Dra. Ana Paula</title>
-<style>:root{--c:#9A6240;--c2:#F3E3DA;--bg:#FAF4EE;--ink:#3A2A22;--soft:#7A6A60;--line:#E6D6CA;--deep:#2F5D54}
+<style>.orna{display:flex;justify-content:center;align-items:center;gap:8px;margin:6px 0 10px}.orna svg{display:block}:root{--c:#B9581C;--c2:#FBE6D2;--bg:#FAF4EE;--ink:#3A2A22;--soft:#7A6A60;--line:#E6D6CA;--deep:#2F5D54}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:19px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
 main{max-width:560px;margin:0 auto;padding:22px 18px 40px;min-height:100vh;display:flex;flex-direction:column}
-h1{font:italic 700 30px/1.2 Georgia,serif;margin:10px 0 12px;color:var(--deep)}
-h2{font:700 21px/1.3 Georgia,serif;margin:18px 0 10px;color:var(--deep)}
+h1{font:italic 400 30px/1.2 Georgia,serif;margin:10px 0 12px;color:var(--deep)}
+h2{font:400 21px/1.3 Georgia,serif;margin:18px 0 10px;color:var(--deep)}
 p{margin:0 0 14px}.sub{color:var(--soft)}
 .top{font:italic 17px Georgia,serif;color:var(--deep);text-align:center;margin:0 0 6px}
-.btn{display:block;width:100%;min-height:58px;border-radius:16px;border:0;background:var(--c);color:#fff;font-weight:700;font-size:19px;font-family:inherit;cursor:pointer;margin-top:10px;text-align:center;text-decoration:none;padding:16px}
-.btn.sec{background:#fff;color:var(--c);border:2px solid var(--c)}
-.card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:18px;margin:0 0 16px}
-.card b{color:var(--deep)}
+.btn{display:block;width:100%;min-height:58px;border-radius:16px;border:0;background:var(--c);color:#fff;font-weight:500;font-size:18px;font-family:inherit;cursor:pointer;margin-top:10px;text-align:center;text-decoration:none;padding:16px}
+.btn.sec{background:#fff;color:var(--c);border:1.5px solid var(--c)}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin:0 0 16px}
+.card b{color:var(--deep)}b,strong{font-weight:500}
 input,select,textarea{width:100%;font:inherit;font-size:19px;padding:14px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);margin:0 0 12px}
-label{display:block;font-weight:700;margin:0 0 6px}
+label{display:block;font-weight:500;margin:0 0 6px}
 .aviso{font-size:15px;color:var(--soft);margin-top:14px}
 .back{display:inline-block;color:var(--soft);font-size:17px;padding:8px 0;text-decoration:none}
-footer{margin-top:auto;padding-top:24px;text-align:center;font-size:15px;color:var(--soft)}</style></head><body><main>
+footer{margin-top:auto;padding-top:24px;text-align:center;font-size:15px;color:var(--soft)}details{margin:6px 0 0}summary{font-weight:500;color:var(--deep);cursor:pointer;padding:8px 0}ul{margin:6px 0 0;padding-left:22px}li{margin:0 0 6px}</style></head><body><main><svg width="0" height="0" style="position:absolute"><defs><path id="lf" d="M0 0C3-3.6 8-4.4 12-3C8.4 0.8 3.4 2.2 0 0Z"/>
+<symbol id="folha" viewBox="0 0 40 40"><g fill="none" stroke="#2F5D54" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 39C20 30 20.5 20 21 12"/>
+<use href="#lf" transform="translate(20.2 31) rotate(-150) scale(.95)"/><use href="#lf" transform="translate(20.2 31) rotate(-32) scale(.95)"/>
+<use href="#lf" transform="translate(20.5 23) rotate(-148) scale(.9)"/><use href="#lf" transform="translate(20.5 23) rotate(-34) scale(.9)"/>
+<use href="#lf" transform="translate(20.8 16) rotate(-145) scale(.75)"/><use href="#lf" transform="translate(20.8 16) rotate(-37) scale(.75)"/>
+<use href="#lf" transform="translate(21 12) rotate(-88) scale(.8)"/></g></symbol>
+<symbol id="laranja" viewBox="0 0 40 40"><circle cx="20" cy="23" r="13" fill="#E08A3C"/><circle cx="20" cy="23" r="10" fill="none" stroke="#F6B572" stroke-width="1.5"/><path d="M20 23V13M20 23l8-4M20 23l8 4M20 23l-8-4M20 23l-8 4M20 23v10" stroke="#F6B572" stroke-width="1.2"/><g fill="none" stroke="#2F5D54" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10.5C20 8 20.5 6.5 21.5 5"/><path d="M21 7C23 3.8 27.5 3.2 30 4.6C27.5 7.6 23.5 8.2 21 7Z"/><path d="M21 7C20 4 17 2.8 14.5 3.6C15.4 6.4 18.4 7.6 21 7Z"/></g></symbol></defs></svg>
 <a class="back" href="index.html">← Voltar</a>
 <p class="top">Dra. Ana Paula · Nutricionista</p>
 <h1>Calculadora de IMC</h1>
-<p class="sub">O IMC é uma referência geral, só um ponto de partida. Para maiores de 18 anos.</p>
-<label for="p">Seu peso (kg)</label><input id="p" type="text" inputmode="decimal" placeholder="Ex.: 68,5">
-<label for="a">Sua altura (cm)</label><input id="a" type="text" inputmode="numeric" placeholder="Ex.: 165">
+<div class="card" style="border-top:3px solid #E08A3C"><h2 style="margin-top:0">O que é o IMC?</h2>
+<p>É uma conta simples que compara o seu <b>peso</b> com a sua <b>altura</b>. Serve como um primeiro ponto de partida para conversar sobre saúde. <b>Sozinho, ele não diz se você está saudável</b>: não considera músculos, idade nem a sua rotina. Para maiores de 18 anos.</p>
+<details><summary>Ver as faixas do IMC</summary><ul><li>Abaixo de 18,5: abaixo do peso</li><li>De 18,5 a 24,9: peso adequado</li><li>De 25 a 29,9: sobrepeso</li><li>30 ou mais: acima do ideal para a faixa de saúde</li></ul></details></div>
+<div class="card" style="background:#FBF0E6;border-color:#EBCBB0"><p style="margin:0"><b>Como preencher:</b> escreva o peso em <b>quilos</b> e a altura em <b>centímetros</b>, <b>sem vírgula e sem ponto</b>.<br>Exemplo: peso <b>68</b> e altura <b>165</b> (e não 1,65).</p></div>
+<label for="p">Seu peso, em quilos (kg)</label><input id="p" type="text" inputmode="numeric" placeholder="Ex.: 68">
+<label for="a">Sua altura, em centímetros (cm)</label><input id="a" type="text" inputmode="numeric" placeholder="Ex.: 165">
 <button class="btn" id="go">Calcular</button>
 <div id="res"></div>
 <p class="aviso">Nada do que você digita é guardado ou enviado. O IMC não considera massa muscular, idade, gestação ou saúde em geral. Só uma nutricionista pode avaliar o seu caso.</p>
@@ -33,8 +42,8 @@ var CONFIG={nutri:"Dra. Ana Paula",whats:"5511970547136"};
 function num(v){return parseFloat(String(v).replace(",","."))}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 document.getElementById("go").onclick=function(){
- var p=num(document.getElementById("p").value),a=num(document.getElementById("a").value),r=document.getElementById("res");
- if(!(p>=20&&p<=400)||!(a>=100&&a<=250)){r.innerHTML='<div class="card"><p>Confira os números: peso em kg (ex.: 68,5) e altura em cm (ex.: 165).</p></div>';return}
+ var p=num(document.getElementById("p").value),a=num(document.getElementById("a").value);if(a>0&&a<3)a=a*100;var r=document.getElementById("res");
+ if(!(p>=20&&p<=400)||!(a>=100&&a<=250)){r.innerHTML='<div class="card"><p>Confira os números: peso em quilos (ex.: 68) e altura em centímetros (ex.: 165), sem vírgula.</p></div>';return}
  var m=a/100,imc=p/(m*m),t,d;
  if(imc<18.5){t="Abaixo do peso";d="Vale conversar com uma nutricionista para entender o que está acontecendo e cuidar bem de você."}
  else if(imc<25){t="Peso adequado";d="Ótimo! O foco agora é manter hábitos que façam bem para você."}
@@ -42,7 +51,7 @@ document.getElementById("go").onclick=function(){
  else{t="Acima do ideal para a faixa de saúde";d="Com acompanhamento profissional, dá para cuidar disso com leveza e sem pressão."}
  var v=imc.toFixed(1).replace(".",",");
  var link="https://wa.me/"+CONFIG.whats+"?text="+encodeURIComponent("Oi, "+CONFIG.nutri+"! Calculei o meu IMC ("+v+") e quero conversar.");
- r.innerHTML='<div class="card" style="margin-top:16px"><p class="sub" style="margin:0">Seu IMC</p><p style="font:italic 700 44px Georgia,serif;color:var(--deep);margin:0">'+v+'</p><p><b>'+esc(t)+'</b></p><p>'+esc(d)+'</p></div><a class="btn" href="'+link+'">Conversar com a '+esc(CONFIG.nutri)+'</a>';
+ r.innerHTML='<div class="card" style="margin-top:16px"><p class="sub" style="margin:0">Seu IMC</p><p style="font:italic 400 44px Georgia,serif;color:var(--deep);margin:0">'+v+'</p><p><b>'+esc(t)+'</b></p><p>'+esc(d)+'</p></div><a class="btn" href="'+link+'">Conversar com a '+esc(CONFIG.nutri)+'</a>';
 };
 })();
 </script></body></html>
