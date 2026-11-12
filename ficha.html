@@ -1,0 +1,116 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fichas de atendimento · Dra. Ana Paula</title>
+<style>:root{--c:#9A6240;--c2:#F3E3DA;--bg:#FAF4EE;--ink:#3A2A22;--soft:#7A6A60;--line:#E6D6CA;--deep:#2F5D54}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:19px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:600px;margin:0 auto;padding:22px 18px 40px;min-height:100vh;display:flex;flex-direction:column}
+h1{font:italic 700 30px/1.2 Georgia,serif;margin:10px 0 12px;color:var(--deep)}
+h2{font:700 21px/1.3 Georgia,serif;margin:18px 0 10px;color:var(--deep)}
+p{margin:0 0 14px}.sub{color:var(--soft)}
+.top{font:italic 17px Georgia,serif;color:var(--deep);text-align:center;margin:0 0 6px}
+.back{display:inline-block;color:var(--soft);font-size:17px;padding:8px 0;text-decoration:none}
+.btn{display:block;width:100%;min-height:56px;border-radius:16px;border:0;background:var(--c);color:#fff;font-weight:700;font-size:19px;font-family:inherit;cursor:pointer;margin-top:10px;text-align:center;text-decoration:none;padding:14px}
+.btn.sec{background:#fff;color:var(--c);border:2px solid var(--c)}
+.btn.del{background:transparent;color:#9b3b3b;border:0;min-height:44px;font-size:16px}
+select,input,textarea{width:100%;font:inherit;font-size:19px;padding:14px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);margin:0 0 12px}
+textarea{min-height:96px;resize:vertical}
+label{display:block;font-weight:700;margin:0 0 6px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 10px}
+.card b{color:var(--deep)}
+.warn{background:var(--c2);border-radius:16px;padding:14px 16px;font-size:16px;margin:0 0 16px}
+.aviso{font-size:15px;color:var(--soft);margin-top:14px}
+footer{margin-top:auto;padding-top:24px;text-align:center;font-size:15px;color:var(--soft)}</style></head><body><script>(function(){var K="gate_anapaula_ok",SALT="nv-anapaula-2026",HASH="11e46045863c99ddd0c6ccea2ce78e21f7d6b85bbe8519b037f4d295522ec9b8";
+try{if(sessionStorage.getItem(K)==="1")return}catch(e){}
+var st=document.createElement("style");st.textContent="main{display:none!important}";document.head.appendChild(st);
+var d=document.createElement("div");d.style.cssText="position:fixed;left:0;top:0;right:0;bottom:0;background:#FAF4EE;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px";
+d.innerHTML='<div style="max-width:360px;width:100%;text-align:center;font:19px/1.5 system-ui,-apple-system,sans-serif;color:#3A2A22"><p style="font:italic 700 28px Georgia,serif;color:#2F5D54;margin:0 0 8px">Área da Dra. Ana Paula</p><p style="color:#7A6A60;margin:0 0 14px">Digite a senha para entrar.</p><input id="gpw" type="password" autocomplete="off" style="width:100%;font:inherit;font-size:19px;padding:14px;border:2px solid #E6D6CA;border-radius:14px;margin:0 0 10px"><button id="gbt" type="button" style="width:100%;min-height:56px;border:0;border-radius:16px;background:#9A6240;color:#fff;font:700 19px system-ui;cursor:pointer">Entrar</button><p id="gerr" style="color:#9b3b3b;font-size:16px;margin:10px 0 0"></p></div>';
+document.body.appendChild(d);
+function hex(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return("0"+x.toString(16)).slice(-2)}).join("")}
+function chk(pw){var e=new TextEncoder();return crypto.subtle.importKey("raw",e.encode(pw),"PBKDF2",false,["deriveBits"]).then(function(k){return crypto.subtle.deriveBits({name:"PBKDF2",salt:e.encode(SALT),iterations:150000,hash:"SHA-256"},k,256)}).then(function(b){return hex(b)===HASH})}
+function go(){var v=document.getElementById("gpw").value;document.getElementById("gerr").textContent="";
+ if(!(window.crypto&&crypto.subtle)){document.getElementById("gerr").textContent="Abra este endereço no Safari ou no Chrome.";return}
+ chk(v).then(function(ok){if(ok){try{sessionStorage.setItem(K,"1")}catch(e){}st.remove();d.remove()}else{document.getElementById("gerr").textContent="Senha incorreta."}})}
+document.getElementById("gbt").onclick=go;document.getElementById("gpw").onkeydown=function(e){if(e.key==="Enter")go()};
+})();</script><main>
+<a class="back" href="estudio.html">← Voltar ao estúdio</a>
+<p class="top">Fichas de atendimento · Dra. Ana Paula</p>
+<h1>Suas fichas</h1>
+<div class="warn"><b>Importante:</b> as fichas ficam <b>só neste aparelho</b>, no navegador. Nada vai para a internet. Se o navegador for limpo ou o celular trocado, elas somem. Por isso, toque em <b>Baixar backup</b> com frequência e guarde o arquivo em local seguro.</div>
+
+<label for="sel">Paciente</label>
+<select id="sel"></select>
+<button class="btn sec" id="nova" type="button">Nova ficha</button>
+
+<div id="ed" style="display:none">
+ <h2>Dados da paciente</h2>
+ <label for="nome">Nome</label><input id="nome" type="text" autocomplete="off">
+ <label for="tel">WhatsApp (opcional)</label><input id="tel" type="text" inputmode="tel" autocomplete="off">
+ <label for="obj">Objetivo</label><textarea id="obj"></textarea>
+ <label for="ger">Anotações gerais (histórico, restrições, rotina)</label><textarea id="ger"></textarea>
+ <button class="btn" id="salva" type="button">Salvar ficha</button>
+
+ <h2>Novo atendimento</h2>
+ <label for="dt">Data</label><input id="dt" type="date">
+ <div class="row"><div><label for="pe">Peso (kg)</label><input id="pe" type="text" inputmode="decimal" placeholder="68,5"></div><div><label for="al">Altura (cm)</label><input id="al" type="text" inputmode="numeric" placeholder="165"></div></div>
+ <label for="gc">% de gordura (opcional)</label><input id="gc" type="text" inputmode="decimal">
+ <label for="nt">Anotações do atendimento</label><textarea id="nt"></textarea>
+ <button class="btn" id="addAt" type="button">Adicionar atendimento</button>
+
+ <h2>Histórico</h2>
+ <div id="hist"></div>
+ <button class="btn del" id="apaga" type="button">Apagar esta ficha</button>
+</div>
+
+<h2>Backup</h2>
+<button class="btn sec" id="bk" type="button">Baixar backup</button>
+<label for="rs" style="margin-top:14px">Restaurar de um backup</label><input id="rs" type="file" accept=".json,application/json">
+<p class="aviso">Este recurso é uma ajuda simples e não substitui um sistema de prontuário. Confira com o seu CRN as exigências para registro e guarda do prontuário, e os cuidados da LGPD com dados de saúde.</p>
+<footer>Feito por Eve, imagem e marca<br>Nutrindo Vidas</footer>
+</main>
+<script>
+(function(){
+var KEY="fichas_anapaula_v1",D={pac:[]},cur=null;
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function num(v){var n=parseFloat(String(v).replace(",","."));return isNaN(n)?null:n}
+function fmt(n){return n==null?"":String(n).replace(".",",")}
+function hoje(){var d=new Date();return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
+function br(d){return d?d.split("-").reverse().join("/"):""}
+function load(){try{var r=JSON.parse(localStorage.getItem(KEY)||"null");if(r&&Array.isArray(r.pac))D=r}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(D));return true}catch(e){alert("Não foi possível salvar neste navegador. Baixe o backup agora.");return false}}
+function pac(){for(var i=0;i<D.pac.length;i++)if(D.pac[i].id===cur)return D.pac[i];return null}
+function lista(){
+ var p=D.pac.slice().sort(function(a,b){return (a.nome||"").localeCompare(b.nome||"","pt-BR")});
+ $("sel").innerHTML='<option value="">'+(p.length?"Escolha uma paciente":"Nenhuma ficha ainda")+'</option>'+p.map(function(x){return'<option value="'+esc(x.id)+'"'+(x.id===cur?" selected":"")+'>'+esc(x.nome||"(sem nome)")+'</option>'}).join("");
+}
+function abre(id){
+ cur=id;var p=pac();$("ed").style.display=p?"block":"none";lista();if(!p)return;
+ $("nome").value=p.nome||"";$("tel").value=p.tel||"";$("obj").value=p.obj||"";$("ger").value=p.ger||"";
+ $("dt").value=hoje();var u=p.at&&p.at[0];$("pe").value="";$("al").value=u&&u.al?fmt(u.al):"";$("gc").value="";$("nt").value="";hist();
+}
+function hist(){
+ var p=pac();if(!p||!p.at||!p.at.length){$("hist").innerHTML='<p class="sub">Nenhum atendimento registrado.</p>';return}
+ $("hist").innerHTML=p.at.map(function(a,i){
+  var imc=a.pe&&a.al?(a.pe/Math.pow(a.al/100,2)).toFixed(1).replace(".",","):"";
+  return'<div class="card"><b>'+br(a.dt)+'</b><br>'+(a.pe?"Peso: "+fmt(a.pe)+" kg · ":"")+(a.al?"Altura: "+fmt(a.al)+" cm · ":"")+(imc?"IMC: "+imc+" · ":"")+(a.gc?"Gordura: "+fmt(a.gc)+"%":"")+(a.nt?'<br>'+esc(a.nt).replace(/\n/g,"<br>"):"")+'<br><button class="btn del" type="button" data-i="'+i+'">Apagar atendimento</button></div>'}).join("");
+}
+$("sel").onchange=function(){abre(this.value||null)};
+$("nova").onclick=function(){var p={id:"p"+Date.now(),nome:"",tel:"",obj:"",ger:"",at:[]};D.pac.push(p);if(save()){abre(p.id);$("nome").focus()}else D.pac.pop()};
+$("salva").onclick=function(){var p=pac();if(!p)return;var n=$("nome").value.trim();if(!n){alert("Digite o nome da paciente.");return}
+ p.nome=n;p.tel=$("tel").value.trim();p.obj=$("obj").value;p.ger=$("ger").value;if(save()){lista();var b=this;b.textContent="Salvo!";setTimeout(function(){b.textContent="Salvar ficha"},1500)}};
+$("addAt").onclick=function(){var p=pac();if(!p)return;
+ var a={dt:$("dt").value||hoje(),pe:num($("pe").value),al:num($("al").value),gc:num($("gc").value),nt:$("nt").value.trim()};
+ if(a.pe==null&&!a.nt&&a.gc==null){alert("Preencha o peso, o % de gordura ou as anotações.");return}
+ if((a.pe!=null&&(a.pe<20||a.pe>400))||(a.al!=null&&(a.al<100||a.al>250))){alert("Confira o peso (kg) e a altura (cm).");return}
+ p.at=p.at||[];p.at.unshift(a);p.at.sort(function(x,y){return x.dt<y.dt?1:x.dt>y.dt?-1:0});
+ if(save()){abre(p.id)}};
+$("hist").onclick=function(e){var b=e.target.closest("button");if(!b)return;var p=pac();if(!p)return;if(confirm("Apagar este atendimento?")){p.at.splice(+b.getAttribute("data-i"),1);save();hist()}};
+$("apaga").onclick=function(){var p=pac();if(!p)return;if(confirm("Apagar a ficha de "+(p.nome||"esta paciente")+"? Não dá para desfazer.")){D.pac=D.pac.filter(function(x){return x.id!==p.id});save();abre(null)}};
+$("bk").onclick=function(){
+ var blob=new Blob([JSON.stringify(D,null,1)],{type:"application/json"}),a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);a.download="fichas-backup-"+hoje()+".json";document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},1500)};
+$("rs").onchange=function(){var f=this.files&&this.files[0];if(!f)return;var r=new FileReader();
+ r.onload=function(){try{var j=JSON.parse(r.result);if(!j||!Array.isArray(j.pac))throw 0;if(confirm("Substituir as fichas deste aparelho pelas do backup ("+j.pac.length+" pacientes)?")){D=j;save();abre(null)}}catch(e){alert("Este arquivo não parece ser um backup de fichas.")}$("rs").value=""};r.readAsText(f)};
+load();lista();
+})();
+</script></body></html>

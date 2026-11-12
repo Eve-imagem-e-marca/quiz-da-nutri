@@ -20,9 +20,23 @@ canvas{width:100%;height:auto;border-radius:14px;border:2px solid var(--line);ba
 .cores{display:flex;gap:10px;margin:0 0 14px}.cor{flex:1;height:56px;border-radius:14px;border:3px solid transparent;cursor:pointer}.cor.on{border-color:var(--ink)}
 .fmt{display:flex;gap:10px;margin:0 0 6px}.fmt button{flex:1;min-height:54px;border-radius:14px;border:2px solid var(--line);background:#fff;font:inherit;font-size:18px;cursor:pointer}.fmt button.on{border-color:var(--c);background:var(--c2);font-weight:700}
 details{background:#fff;border:2px solid var(--line);border-radius:16px;padding:12px 16px;margin:0 0 12px}summary{font-weight:700;cursor:pointer;color:var(--deep)}
-li{margin:0 0 8px}</style></head><body><main>
+li{margin:0 0 8px}</style></head><body><script>(function(){var K="gate_anapaula_ok",SALT="nv-anapaula-2026",HASH="11e46045863c99ddd0c6ccea2ce78e21f7d6b85bbe8519b037f4d295522ec9b8";
+try{if(sessionStorage.getItem(K)==="1")return}catch(e){}
+var st=document.createElement("style");st.textContent="main{display:none!important}";document.head.appendChild(st);
+var d=document.createElement("div");d.style.cssText="position:fixed;left:0;top:0;right:0;bottom:0;background:#FAF4EE;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px";
+d.innerHTML='<div style="max-width:360px;width:100%;text-align:center;font:19px/1.5 system-ui,-apple-system,sans-serif;color:#3A2A22"><p style="font:italic 700 28px Georgia,serif;color:#2F5D54;margin:0 0 8px">Área da Dra. Ana Paula</p><p style="color:#7A6A60;margin:0 0 14px">Digite a senha para entrar.</p><input id="gpw" type="password" autocomplete="off" style="width:100%;font:inherit;font-size:19px;padding:14px;border:2px solid #E6D6CA;border-radius:14px;margin:0 0 10px"><button id="gbt" type="button" style="width:100%;min-height:56px;border:0;border-radius:16px;background:#9A6240;color:#fff;font:700 19px system-ui;cursor:pointer">Entrar</button><p id="gerr" style="color:#9b3b3b;font-size:16px;margin:10px 0 0"></p></div>';
+document.body.appendChild(d);
+function hex(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return("0"+x.toString(16)).slice(-2)}).join("")}
+function chk(pw){var e=new TextEncoder();return crypto.subtle.importKey("raw",e.encode(pw),"PBKDF2",false,["deriveBits"]).then(function(k){return crypto.subtle.deriveBits({name:"PBKDF2",salt:e.encode(SALT),iterations:150000,hash:"SHA-256"},k,256)}).then(function(b){return hex(b)===HASH})}
+function go(){var v=document.getElementById("gpw").value;document.getElementById("gerr").textContent="";
+ if(!(window.crypto&&crypto.subtle)){document.getElementById("gerr").textContent="Abra este endereço no Safari ou no Chrome.";return}
+ chk(v).then(function(ok){if(ok){try{sessionStorage.setItem(K,"1")}catch(e){}st.remove();d.remove()}else{document.getElementById("gerr").textContent="Senha incorreta."}})}
+document.getElementById("gbt").onclick=go;document.getElementById("gpw").onkeydown=function(e){if(e.key==="Enter")go()};
+})();</script><main>
 <p class="top">Estúdio de posts · Dra. Ana Paula</p>
 <h1>Crie o seu post em 3 toques</h1>
+<a class="btn sec" href="conteudo.html" style="margin:0 0 10px">Falar com a IAsmin: calendário e roteiros</a>
+<a class="btn sec" href="ficha.html" style="margin:0 0 16px">Fichas de atendimento</a>
 <h2>1. Formato</h2>
 <div class="fmt"><button id="fp" class="on">Post</button><button id="fs">Story</button></div>
 <h2>2. Frase</h2>
