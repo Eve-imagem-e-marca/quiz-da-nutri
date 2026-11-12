@@ -1,0 +1,54 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Calculadora de água · Dra. Ana Paula</title>
+<style>:root{--c:#9A6240;--c2:#F3E3DA;--bg:#FAF4EE;--ink:#3A2A22;--soft:#7A6A60;--line:#E6D6CA;--deep:#2F5D54}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:19px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:560px;margin:0 auto;padding:22px 18px 40px;min-height:100vh;display:flex;flex-direction:column}
+h1{font:italic 700 30px/1.2 Georgia,serif;margin:10px 0 12px;color:var(--deep)}
+h2{font:700 21px/1.3 Georgia,serif;margin:18px 0 10px;color:var(--deep)}
+p{margin:0 0 14px}.sub{color:var(--soft)}
+.top{font:italic 17px Georgia,serif;color:var(--deep);text-align:center;margin:0 0 6px}
+.btn{display:block;width:100%;min-height:58px;border-radius:16px;border:0;background:var(--c);color:#fff;font-weight:700;font-size:19px;font-family:inherit;cursor:pointer;margin-top:10px;text-align:center;text-decoration:none;padding:16px}
+.btn.sec{background:#fff;color:var(--c);border:2px solid var(--c)}
+.card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:18px;margin:0 0 16px}
+.card b{color:var(--deep)}
+input,select,textarea{width:100%;font:inherit;font-size:19px;padding:14px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);margin:0 0 12px}
+label{display:block;font-weight:700;margin:0 0 6px}
+.aviso{font-size:15px;color:var(--soft);margin-top:14px}
+.back{display:inline-block;color:var(--soft);font-size:17px;padding:8px 0;text-decoration:none}
+footer{margin-top:auto;padding-top:24px;text-align:center;font-size:15px;color:var(--soft)}
+.tabs{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:0 0 14px}
+.tabs button{min-height:54px;border-radius:12px;border:2px solid var(--line);background:#fff;color:var(--ink);font:700 16px system-ui,sans-serif;cursor:pointer;padding:4px 0}
+.tabs button.on{background:var(--c);border-color:var(--c);color:#fff}
+.tabs button.ok{border-color:var(--deep);color:var(--deep)}
+.tabs button.on.ok{color:#fff}
+.mc{background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 10px}
+.mc small{display:block;color:var(--soft);font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.chk{display:flex;gap:12px;align-items:center;background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 10px;font-size:19px;cursor:pointer}
+.chk input{width:28px;height:28px;margin:0;flex:none;accent-color:#2F5D54}
+.bar{height:14px;background:var(--c2);border-radius:99px;overflow:hidden;margin:6px 0 14px}.bar i{display:block;height:100%;background:var(--deep);width:0;transition:width .3s}
+.big{font:italic 700 46px Georgia,serif;color:var(--deep);margin:0}
+.btn.ghost{background:transparent;color:var(--soft);border:0;min-height:44px;font-weight:600;font-size:16px}
+</style></head><body><main>
+<a class="back" href="index.html">← Voltar</a>
+<p class="top">Dra. Ana Paula · Nutricionista</p>
+<h1>Quanto de água eu preciso?</h1>
+<p class="sub">Uma estimativa simples para o seu dia. Para maiores de 18 anos.</p>
+<label for="p">Seu peso (kg)</label><input id="p" type="text" inputmode="decimal" placeholder="Ex.: 68,5">
+<button class="btn" id="go">Calcular</button>
+<div id="res"></div>
+<p class="aviso">É uma referência geral (cerca de 35 ml por kg). Em dias de calor, treino ou amamentação, a necessidade costuma ser maior. Quem tem problema de rim, coração ou outra condição deve seguir a orientação do médico ou da nutricionista. Nada do que você digita é guardado.</p>
+<footer>Feito por Eve, imagem e marca<br>Nutrindo Vidas</footer>
+</main>
+<script>
+(function(){
+var CONFIG={nutri:"Dra. Ana Paula",whats:"5511980397512"};
+function num(v){return parseFloat(String(v).replace(",","."))}
+document.getElementById("go").onclick=function(){
+ var p=num(document.getElementById("p").value),r=document.getElementById("res");
+ if(!(p>=20&&p<=400)){r.innerHTML='<div class="card"><p>Confira o peso em kg (ex.: 68,5).</p></div>';return}
+ var ml=p*35,l=(ml/1000).toFixed(1).replace(".",","),copos=Math.round(ml/200);
+ var link="https://wa.me/"+CONFIG.whats+"?text="+encodeURIComponent("Oi, "+CONFIG.nutri+"! Calculei a minha água do dia ("+l+" litros) e quero conversar.");
+ r.innerHTML='<div class="card" style="margin-top:16px"><p class="sub" style="margin:0">Sua meta de água por dia</p><p class="big">'+l+' litros</p><p>Isso dá cerca de <b>'+copos+' copos</b> de 200 ml.</p><p class="sub" style="margin:0">Dica: deixe uma garrafa por perto e beba aos poucos, ao longo do dia.</p></div><a class="btn" href="'+link+'">Conversar com a '+CONFIG.nutri+'</a>';
+};
+})();
+</script></body></html>

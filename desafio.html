@@ -1,0 +1,78 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Desafio de 7 dias · Dra. Ana Paula</title>
+<style>:root{--c:#9A6240;--c2:#F3E3DA;--bg:#FAF4EE;--ink:#3A2A22;--soft:#7A6A60;--line:#E6D6CA;--deep:#2F5D54}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:19px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:560px;margin:0 auto;padding:22px 18px 40px;min-height:100vh;display:flex;flex-direction:column}
+h1{font:italic 700 30px/1.2 Georgia,serif;margin:10px 0 12px;color:var(--deep)}
+h2{font:700 21px/1.3 Georgia,serif;margin:18px 0 10px;color:var(--deep)}
+p{margin:0 0 14px}.sub{color:var(--soft)}
+.top{font:italic 17px Georgia,serif;color:var(--deep);text-align:center;margin:0 0 6px}
+.btn{display:block;width:100%;min-height:58px;border-radius:16px;border:0;background:var(--c);color:#fff;font-weight:700;font-size:19px;font-family:inherit;cursor:pointer;margin-top:10px;text-align:center;text-decoration:none;padding:16px}
+.btn.sec{background:#fff;color:var(--c);border:2px solid var(--c)}
+.card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:18px;margin:0 0 16px}
+.card b{color:var(--deep)}
+input,select,textarea{width:100%;font:inherit;font-size:19px;padding:14px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);margin:0 0 12px}
+label{display:block;font-weight:700;margin:0 0 6px}
+.aviso{font-size:15px;color:var(--soft);margin-top:14px}
+.back{display:inline-block;color:var(--soft);font-size:17px;padding:8px 0;text-decoration:none}
+footer{margin-top:auto;padding-top:24px;text-align:center;font-size:15px;color:var(--soft)}
+.tabs{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:0 0 14px}
+.tabs button{min-height:54px;border-radius:12px;border:2px solid var(--line);background:#fff;color:var(--ink);font:700 16px system-ui,sans-serif;cursor:pointer;padding:4px 0}
+.tabs button.on{background:var(--c);border-color:var(--c);color:#fff}
+.tabs button.ok{border-color:var(--deep);color:var(--deep)}
+.tabs button.on.ok{color:#fff}
+.mc{background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 10px}
+.mc small{display:block;color:var(--soft);font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.chk{display:flex;gap:12px;align-items:center;background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 10px;font-size:19px;cursor:pointer}
+.chk input{width:28px;height:28px;margin:0;flex:none;accent-color:#2F5D54}
+.bar{height:14px;background:var(--c2);border-radius:99px;overflow:hidden;margin:6px 0 14px}.bar i{display:block;height:100%;background:var(--deep);width:0;transition:width .3s}
+.big{font:italic 700 46px Georgia,serif;color:var(--deep);margin:0}
+.btn.ghost{background:transparent;color:var(--soft);border:0;min-height:44px;font-weight:600;font-size:16px}
+</style></head><body><main>
+<a class="back" href="index.html">← Voltar</a>
+<p class="top">Dra. Ana Paula · Nutricionista</p>
+<h1>Desafio de 7 dias</h1>
+<p class="sub">Quatro gestos leves por dia. Marque o que você fez, sem pressão. O seu progresso fica só neste celular.</p>
+<div class="tabs" id="tabs"></div>
+<h2 id="dia"></h2>
+<div id="itens"></div>
+<p class="sub" style="margin:10px 0 0">Progresso da semana</p>
+<div class="bar"><i id="barra"></i></div>
+<p id="msg"></p>
+<div id="fim"></div>
+<button class="btn ghost" id="reset">Recomeçar o desafio</button>
+<p class="aviso">Conteúdo de orientação geral. Não substitui consulta com nutricionista.</p>
+<footer>Feito por Eve, imagem e marca<br>Nutrindo Vidas</footer>
+</main>
+<script>
+(function(){
+var CONFIG={nutri:"Dra. Ana Paula",whats:"5511980397512"};
+var DIAS=["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"];
+var NOMES=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"];
+var HAB=["Bebi a minha água do dia","Me movimentei por 20 minutos","Coloquei cor no prato (legumes ou verduras)","Dormi bem e sem pressa"];
+var KEY="desafio7_anapaula",st={},sel=0;
+try{st=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){st={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+function fez(d,h){return !!st[d+"_"+h]}
+function totalDia(d){var n=0;for(var h=0;h<HAB.length;h++)if(fez(d,h))n++;return n}
+function render(){
+ var t=document.getElementById("tabs"),html="",tot=0;
+ for(var d=0;d<7;d++){var n=totalDia(d);tot+=n;html+='<button data-d="'+d+'" class="'+(d===sel?"on ":"")+(n===HAB.length?"ok":"")+'">'+DIAS[d]+(n===HAB.length?" ✓":"")+'</button>'}
+ t.innerHTML=html;
+ document.getElementById("dia").textContent=NOMES[sel];
+ var it="";for(var h=0;h<HAB.length;h++)it+='<label class="chk"><input type="checkbox" data-h="'+h+'"'+(fez(sel,h)?" checked":"")+'><span>'+HAB[h]+'</span></label>';
+ document.getElementById("itens").innerHTML=it;
+ var max=7*HAB.length,pct=Math.round(tot/max*100);
+ document.getElementById("barra").style.width=pct+"%";
+ var m=tot===0?"Comece com um gesto só. Já vale.":tot<max/2?"Muito bem! Cada gesto conta.":tot<max?"Você está no caminho. Continue com leveza.":"Desafio concluído! Que orgulho de você.";
+ document.getElementById("msg").innerHTML="<b>"+tot+" de "+max+"</b> gestos feitos. "+m;
+ var f=document.getElementById("fim");
+ if(tot>0){var link="https://wa.me/"+CONFIG.whats+"?text="+encodeURIComponent("Oi, "+CONFIG.nutri+"! Fiz "+tot+" de "+max+" gestos do desafio de 7 dias e quero conversar.");
+  f.innerHTML='<a class="btn" href="'+link+'">Contar para a '+CONFIG.nutri+'</a>'}else f.innerHTML="";
+}
+document.getElementById("tabs").onclick=function(e){var b=e.target.closest("button");if(!b)return;sel=+b.getAttribute("data-d");render()};
+document.getElementById("itens").onchange=function(e){var i=e.target;if(i.type!=="checkbox")return;st[sel+"_"+i.getAttribute("data-h")]=i.checked;save();render()};
+document.getElementById("reset").onclick=function(){if(confirm("Recomeçar e limpar as marcações?")){st={};save();sel=0;render()}};
+render();
+})();
+</script></body></html>

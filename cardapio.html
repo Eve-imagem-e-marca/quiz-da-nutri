@@ -1,0 +1,100 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cardápio da semana · Dra. Ana Paula</title>
+<style>:root{--c:#9A6240;--c2:#F3E3DA;--bg:#FAF4EE;--ink:#3A2A22;--soft:#7A6A60;--line:#E6D6CA;--deep:#2F5D54}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:19px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:560px;margin:0 auto;padding:22px 18px 40px;min-height:100vh;display:flex;flex-direction:column}
+h1{font:italic 700 30px/1.2 Georgia,serif;margin:10px 0 12px;color:var(--deep)}
+h2{font:700 21px/1.3 Georgia,serif;margin:18px 0 10px;color:var(--deep)}
+p{margin:0 0 14px}.sub{color:var(--soft)}
+.top{font:italic 17px Georgia,serif;color:var(--deep);text-align:center;margin:0 0 6px}
+.btn{display:block;width:100%;min-height:58px;border-radius:16px;border:0;background:var(--c);color:#fff;font-weight:700;font-size:19px;font-family:inherit;cursor:pointer;margin-top:10px;text-align:center;text-decoration:none;padding:16px}
+.btn.sec{background:#fff;color:var(--c);border:2px solid var(--c)}
+.card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:18px;margin:0 0 16px}
+.card b{color:var(--deep)}
+input,select,textarea{width:100%;font:inherit;font-size:19px;padding:14px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);margin:0 0 12px}
+label{display:block;font-weight:700;margin:0 0 6px}
+.aviso{font-size:15px;color:var(--soft);margin-top:14px}
+.back{display:inline-block;color:var(--soft);font-size:17px;padding:8px 0;text-decoration:none}
+footer{margin-top:auto;padding-top:24px;text-align:center;font-size:15px;color:var(--soft)}
+.tabs{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:0 0 14px}
+.tabs button{min-height:54px;border-radius:12px;border:2px solid var(--line);background:#fff;color:var(--ink);font:700 16px system-ui,sans-serif;cursor:pointer;padding:4px 0}
+.tabs button.on{background:var(--c);border-color:var(--c);color:#fff}
+.tabs button.ok{border-color:var(--deep);color:var(--deep)}
+.tabs button.on.ok{color:#fff}
+.mc{background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 10px}
+.mc small{display:block;color:var(--soft);font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.chk{display:flex;gap:12px;align-items:center;background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 10px;font-size:19px;cursor:pointer}
+.chk input{width:28px;height:28px;margin:0;flex:none;accent-color:#2F5D54}
+.bar{height:14px;background:var(--c2);border-radius:99px;overflow:hidden;margin:6px 0 14px}.bar i{display:block;height:100%;background:var(--deep);width:0;transition:width .3s}
+.big{font:italic 700 46px Georgia,serif;color:var(--deep);margin:0}
+.btn.ghost{background:transparent;color:var(--soft);border:0;min-height:44px;font-weight:600;font-size:16px}
+</style></head><body><main>
+<a class="back" href="index.html">← Voltar</a>
+<p class="top">Dra. Ana Paula · Nutricionista</p>
+<h1>Cardápio da semana</h1>
+<p class="sub">Uma ideia leve de semana, com lista de compras pronta. Toque no dia.</p>
+<div class="tabs" id="tabs"></div>
+<h2 id="dia"></h2>
+<div id="refs"></div>
+<button class="btn sec" id="vl">Ver a lista de compras da semana</button>
+<div id="lista" style="display:none">
+ <h2>Lista de compras</h2>
+ <p class="sub">Marque o que você já tem em casa.</p>
+ <div id="itens"></div>
+ <button class="btn" id="cp">Copiar a lista</button>
+ <a class="btn sec" id="wz" href="#">Enviar a lista pelo WhatsApp</a>
+</div>
+<a class="btn" id="pers" href="#">Quero um cardápio personalizado</a>
+<p class="aviso">Sugestão geral de rotina, sem quantidades e sem prescrição. Cada pessoa tem necessidades diferentes: só uma nutricionista pode montar o plano certo para você. Temperos, azeite e sal: use o que já tem em casa.</p>
+<footer>Feito por Eve, imagem e marca<br>Nutrindo Vidas</footer>
+</main>
+<script>
+(function(){
+var CONFIG={nutri:"Dra. Ana Paula",whats:"5511980397512"};
+var DIAS=["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"];
+var NOMES=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"];
+var REF=["Café da manhã","Almoço","Lanche da tarde","Jantar"];
+var M=[
+ [["Pão integral com ovo mexido e mamão",["pão integral","ovo","mamão"]],["Arroz, feijão, frango grelhado e salada de alface e tomate",["arroz","feijão","filé de frango","alface","tomate"]],["Iogurte natural com banana e aveia",["iogurte natural","banana","aveia"]],["Omelete de legumes com salada",["ovo","abobrinha","cenoura","alface"]]],
+ [["Tapioca com queijo branco e uma laranja",["tapioca","queijo minas","laranja"]],["Arroz, feijão, carne moída com legumes e couve refogada",["arroz","feijão","carne moída","cenoura","couve"]],["Maçã com pasta de amendoim",["maçã","pasta de amendoim"]],["Sopa de legumes com frango desfiado",["filé de frango","batata","cenoura","chuchu"]]],
+ [["Iogurte com granola e morangos",["iogurte natural","granola","morango"]],["Peixe assado, arroz, purê de abóbora e salada",["filé de peixe","arroz","abóbora","alface","tomate"]],["Castanhas e uma mexerica",["castanhas","mexerica"]],["Wrap integral de frango com salada",["tortilha integral","filé de frango","alface","tomate"]]],
+ [["Vitamina de banana com aveia",["leite","banana","aveia"]],["Arroz, lentilha, frango assado e brócolis",["arroz","lentilha","filé de frango","brócolis"]],["Pão integral com ricota",["pão integral","ricota"]],["Salada completa com atum e grão-de-bico",["atum","grão-de-bico","alface","tomate","pepino"]]],
+ [["Panqueca de banana e aveia",["banana","ovo","aveia"]],["Arroz, feijão, bife grelhado e abobrinha refogada",["arroz","feijão","carne bovina","abobrinha","tomate"]],["Frutas picadas com iogurte",["mamão","maçã","iogurte natural"]],["Macarrão integral com frango e legumes",["macarrão integral","filé de frango","brócolis","tomate"]]],
+ [["Ovos mexidos com tomate e pão integral",["ovo","tomate","pão integral"]],["Escondidinho de frango com batata-doce e salada",["batata-doce","filé de frango","alface"]],["Pipoca de panela com pouco óleo",["milho de pipoca"]],["Caldo de feijão com couve e um ovo",["feijão","couve","ovo"]]],
+ [["Tapioca com ovo e uma fruta",["tapioca","ovo","banana"]],["Arroz, feijão, carne assada, legumes assados e salada",["arroz","feijão","carne bovina","cenoura","abobrinha","alface"]],["Fruta da estação com castanhas",["mamão","castanhas"]],["Jantar leve: sopa de legumes",["batata","cenoura","chuchu","abóbora"]]]
+];
+var CAT={"Hortifrúti":["mamão","banana","alface","tomate","abobrinha","cenoura","couve","batata","chuchu","morango","abóbora","mexerica","maçã","brócolis","pepino","batata-doce","laranja"],
+"Proteínas":["ovo","filé de frango","carne bovina","carne moída","filé de peixe","atum"],
+"Grãos e básicos":["arroz","feijão","lentilha","grão-de-bico","aveia","pão integral","tapioca","macarrão integral","tortilha integral","granola","milho de pipoca"],
+"Laticínios":["iogurte natural","queijo minas","leite","ricota"],
+"Outros":["pasta de amendoim","castanhas"]};
+var KEY="compras_anapaula",have={},sel=(new Date().getDay()+6)%7;
+try{have=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){have={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(have))}catch(e){}}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function renderDia(){
+ var t="";for(var d=0;d<7;d++)t+='<button data-d="'+d+'" class="'+(d===sel?"on":"")+'">'+DIAS[d]+'</button>';
+ document.getElementById("tabs").innerHTML=t;
+ document.getElementById("dia").textContent=NOMES[sel];
+ var h="";for(var i=0;i<4;i++)h+='<div class="mc"><small>'+REF[i]+'</small>'+esc(M[sel][i][0])+'</div>';
+ document.getElementById("refs").innerHTML=h;
+}
+function lista(){var out={};for(var d=0;d<7;d++)for(var i=0;i<4;i++)M[d][i][1].forEach(function(x){out[x]=1});
+ var res=[];Object.keys(CAT).forEach(function(c){var it=CAT[c].filter(function(x){return out[x]});if(it.length)res.push([c,it])});return res}
+function renderLista(){
+ var h="";lista().forEach(function(g){h+="<h2 style='font-size:18px;margin:14px 0 8px'>"+g[0]+"</h2>";
+  g[1].forEach(function(x){h+='<label class="chk"><input type="checkbox" data-x="'+esc(x)+'"'+(have[x]?" checked":"")+'><span>'+cap(x)+'</span></label>'})});
+ document.getElementById("itens").innerHTML=h;
+ var txt="Lista de compras da semana\n";lista().forEach(function(g){txt+="\n"+g[0]+"\n";g[1].forEach(function(x){if(!have[x])txt+="- "+cap(x)+"\n"})});
+ document.getElementById("wz").href="https://wa.me/?text="+encodeURIComponent(txt);
+ document.getElementById("cp").onclick=function(){var b=this;function ok(){b.textContent="Lista copiada!";setTimeout(function(){b.textContent="Copiar a lista"},2000)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,function(){prompt("Copie a lista:",txt)})}else{prompt("Copie a lista:",txt)}};
+}
+document.getElementById("tabs").onclick=function(e){var b=e.target.closest("button");if(!b)return;sel=+b.getAttribute("data-d");renderDia()};
+document.getElementById("vl").onclick=function(){var l=document.getElementById("lista");var show=l.style.display==="none";l.style.display=show?"block":"none";this.textContent=show?"Esconder a lista de compras":"Ver a lista de compras da semana";if(show){renderLista();l.scrollIntoView({behavior:"smooth"})}};
+document.getElementById("itens").onchange=function(e){var i=e.target;if(i.type!=="checkbox")return;have[i.getAttribute("data-x")]=i.checked;save();renderLista()};
+document.getElementById("pers").href="https://wa.me/"+CONFIG.whats+"?text="+encodeURIComponent("Oi, "+CONFIG.nutri+"! Vi o cardápio da semana e quero um personalizado para mim.");
+renderDia();
+})();
+</script></body></html>
